@@ -1,0 +1,25 @@
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav #sidenav class="app-sidenav mat-elevation-z10"
+               [opened]="true"
+               [mode]="'side'">
+    <mat-toolbar color="primary">
+      Blog
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let post of posts | async">
+        <a matLine [routerLink]="['/postdetail', post.id]">
+          {{ post.title }}
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div class="app-sidenav-content">
+
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</mat-sidenav-container>
+

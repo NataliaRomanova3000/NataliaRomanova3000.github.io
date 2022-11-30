@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <span>{{post.title}}</span>
+  <span class="example-spacer"></span>
+  <a [routerLink]="['/guestbook']">
+    Guest book
+  </a>
+</mat-toolbar>
+
+<div class="content">
+  <mat-card>
+      <p>{{post.body}}</p>
+  </mat-card>
+  <br>
+  <mat-card>
+    <h1>Comments</h1>
+    <div>
+      <mat-form-field appearance="fill">
+        <textarea matInput [formControl]="message" required></textarea>
+        <mat-error *ngIf="message.errors?.required">You must enter a comment</mat-error>
+        <mat-error *ngIf="message.errors?.minlength">You must provide 5 symbols at least</mat-error>
+      </mat-form-field>
+        <button mat-button (click)="addNewComment()">Add comment</button>
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let comment of comments$ | async">
+        <p matLine class="demo-2"> {{comment.message}} </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
+
+
